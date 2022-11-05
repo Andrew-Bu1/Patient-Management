@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.loginDesign">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="300.0">
+      <AnchorPane fx:id="loginForm" prefHeight="400.0" prefWidth="300.0">
          <children>
             <AnchorPane prefHeight="400.0" prefWidth="300.0" styleClass="left-form" stylesheets="@../res/loginDesign.css">
                <children>
@@ -31,14 +31,14 @@
                         <Font name="Times New Roman Bold" size="21.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="80.0" layoutY="188.0" promptText="Username" styleClass="textfield" stylesheets="@../res/loginDesign.css" />
-                  <PasswordField layoutX="80.0" layoutY="231.0" promptText="Password" styleClass="textfield" stylesheets="@../res/loginDesign.css" />
-                  <Button layoutX="82.0" layoutY="282.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="157.0" styleClass="login-btn" stylesheets="@../res/loginDesign.css" text="Login">
+                  <TextField fx:id="username" layoutX="80.0" layoutY="188.0" promptText="Username" styleClass="textfield" stylesheets="@../res/loginDesign.css" />
+                  <PasswordField fx:id="password" layoutX="80.0" layoutY="231.0" promptText="Password" styleClass="textfield" stylesheets="@../res/loginDesign.css" />
+                  <Button fx:id="loginButton" layoutX="82.0" layoutY="282.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="157.0" styleClass="login-btn" stylesheets="@../res/loginDesign.css" text="Login">
                      <font>
                         <Font name="Times New Roman" size="12.0" />
                      </font>
                   </Button>
-                  <Button layoutX="257.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="43.0" styleClass="close" stylesheets="@../res/loginDesign.css" text="X">
+                  <Button fx:id="close" layoutX="257.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="43.0" styleClass="close" stylesheets="@../res/loginDesign.css" text="X">
                      <font>
                         <Font name="Tahoma Bold" size="12.0" />
                      </font>
