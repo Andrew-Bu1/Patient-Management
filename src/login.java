@@ -4,34 +4,57 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class loginDesign {
+public class login {
+
+    @FXML
+    private Button Signup;
 
     @FXML
     private Button close;
 
     @FXML
+    private Button closeSignup;
+
+    @FXML
+    private Hyperlink createAccount;
+
+    @FXML
+    private Hyperlink loginAccount;
+
+    @FXML
     private Button loginButton;
 
     @FXML
-    private AnchorPane loginForm;
+    private AnchorPane loginform;
 
     @FXML
     private PasswordField password;
 
     @FXML
+    private PasswordField passwordSignup;
+
+    @FXML
+    private AnchorPane signupform;
+
+    @FXML
     private TextField username;
+
+    @FXML
+    private TextField usernameSignup;
 
     private Connection connect;
     private PreparedStatement prepare;
@@ -87,6 +110,27 @@ public class loginDesign {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void changeForm(ActionEvent event) {
+
+        if (event.getSource() == createAccount) {
+
+            signupform.setVisible(true);
+            loginform.setVisible(false);
+
+            usernameSignup.setText("");
+            passwordSignup.setText("");
+
+        } else if (event.getSource() == loginAccount) {
+
+            loginform.setVisible(true);
+            signupform.setVisible(false);
+
+            username.setText("");
+            password.setText("");
+        }
+
     }
 
     public void close() {

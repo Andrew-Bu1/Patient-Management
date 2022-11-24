@@ -47,3 +47,17 @@
 .login-btn:hover {
     -fx-background-color: linear-gradient(to bottom, #277bd0, #1b6fa4);
 }
+
+.hypertext-design {
+
+    -fx-text-fill: #5185c5;
+    -fx-underline: false;
+    -fx-border-color: transparent;
+
+}
+
+.hypertext-design:hover {
+
+    -fx-underline: true;
+
+}
