@@ -13,6 +13,8 @@ public class App extends Application {
     private double x = 0;
     private double y = 0;
 
+    public static String userName;
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));

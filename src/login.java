@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
@@ -56,12 +57,15 @@ public class login {
     @FXML
     private TextField usernameSignup;
 
+    @FXML
+    private Label user;
+
     private Connection connect;
     private PreparedStatement prepare;
     private ResultSet result;
 
     public void loginAdmin() {
-        String sql = "SELECT * FROM adminlogin WHERE username = ? and password = ?";
+        String sql = "SELECT * FROM account WHERE username = ? and password = ?";
 
         connect = database.connectDatabase();
 
@@ -80,8 +84,10 @@ public class login {
                 alert.setHeaderText(null);
                 alert.setContentText("Please fill your Password or Username");
                 alert.showAndWait();
+
             } else {
                 if (result.next()) {
+                    App.userName = result.getString("username");
                     alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
@@ -98,6 +104,9 @@ public class login {
                     stage.setScene(scene);
                     stage.show();
 
+                    String userName = result.getString("username");
+                    user.setText(userName);
+
                 } else {
                     alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Error Message");
@@ -107,6 +116,59 @@ public class login {
 
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void signupAdmin() {
+        connect = database.connectDatabase();
+
+        String sql = "INSERT INTO account (username,password) VALUES(?,?)";
+
+        try {
+
+            if (usernameSignup.getText().isEmpty() || passwordSignup.getText().isEmpty()) {
+
+                Alert alert = new Alert(AlertType.ERROR);
+
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Enter all field blanks!");
+                alert.showAndWait();
+
+            } else if (passwordSignup.getText().length() < 6) {
+
+                Alert alert = new Alert(AlertType.ERROR);
+
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please set your password length longer than 6 characters");
+                alert.showAndWait();
+
+            } else {
+                prepare = connect.prepareStatement(sql);
+                prepare.setString(1, usernameSignup.getText());
+                prepare.setString(2, passwordSignup.getText());
+
+                try {
+                    prepare.execute();
+
+                    Alert alert = new Alert(AlertType.INFORMATION);
+
+                    alert.setTitle("Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successfully create a new account!");
+                } catch (Exception e) {
+                    Alert alert = new Alert(AlertType.INFORMATION);
+
+                    alert.setTitle("Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Your Account is already created");
+                    alert.showAndWait();
+                }
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
