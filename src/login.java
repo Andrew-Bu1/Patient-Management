@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -64,6 +65,9 @@ public class login {
     private PreparedStatement prepare;
     private ResultSet result;
 
+    private double x;
+    private double y;
+
     public void loginAdmin() {
         String sql = "SELECT * FROM account WHERE username = ? and password = ?";
 
@@ -101,11 +105,18 @@ public class login {
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
 
+                    root.setOnMousePressed((MouseEvent event) -> {
+                        x = event.getSceneX();
+                        y = event.getSceneY();
+                    });
+
+                    root.setOnMouseDragged((MouseEvent event) -> {
+                        stage.setX(event.getScreenX() - x);
+                        stage.setY(event.getScreenY() - y);
+                    });
+
                     stage.setScene(scene);
                     stage.show();
-
-                    String userName = result.getString("username");
-                    user.setText(userName);
 
                 } else {
                     alert = new Alert(AlertType.ERROR);
@@ -113,7 +124,6 @@ public class login {
                     alert.setHeaderText(null);
                     alert.setContentText("Wrong Username or Password! Please try again");
                     alert.showAndWait();
-
                 }
             }
         } catch (Exception e) {

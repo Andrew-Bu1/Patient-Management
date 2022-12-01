@@ -21,7 +21,7 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.dashboard">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="1100.0">
+      <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="1100.0">
          <children>
             <BorderPane prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <top>
@@ -31,10 +31,14 @@
                            <children>
                               <FontAwesomeIcon glyphName="HOSPITAL_ALT" layoutX="14.0" layoutY="28.0" size="1.5em" />
                               <Label layoutX="36.0" layoutY="14.0" text="Patient Management System" />
-                              <Button layoutX="1049.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="48.0" styleClass="close" stylesheets="@../res/dashboard.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0" />
-                              <FontAwesomeIcon glyphName="CLOSE" layoutX="1067.0" layoutY="20.0" size="1.2em" text="" wrappingWidth="14.0" />
-                              <Button layoutX="1010.0" layoutY="5.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" styleClass="minimize" stylesheets="@../res/dashboard.css" AnchorPane.topAnchor="2.0" />
-                              <FontAwesomeIcon glyphName="MINUS" layoutX="1024.0" layoutY="20.0" />
+                              <Button fx:id="close" layoutX="1049.0" layoutY="2.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="48.0" styleClass="close" stylesheets="@../res/dashboard.css" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="6.0">
+                                 <graphic>
+                                    <FontAwesomeIcon glyphName="CLOSE" layoutY="6.0" size="1.2em" text="" wrappingWidth="14.0" />
+                                 </graphic></Button>
+                              <Button fx:id="minimize" layoutX="1018.0" layoutY="6.0" mnemonicParsing="false" onAction="#minimize" prefHeight="25.0" prefWidth="40.0" styleClass="minimize" stylesheets="@../res/dashboard.css" AnchorPane.topAnchor="6.0">
+                                 <graphic>
+                                    <FontAwesomeIcon glyphName="MINUS" />
+                                 </graphic></Button>
                            </children>
                         </AnchorPane>
                      </children>
@@ -43,7 +47,7 @@
                <left>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane prefHeight="555.0" prefWidth="200.0" styleClass="nav-form" stylesheets="@../res/dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane prefHeight="564.0" prefWidth="200.0" styleClass="nav-form" stylesheets="@../res/dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <FontAwesomeIcon fill="#fffefe" glyphName="HOSPITAL_ALT" layoutX="67.0" layoutY="116.0" size="7em" text="" />
                               <Label layoutX="56.0" layoutY="159.0" text="Welcome," textFill="WHITE">
@@ -57,7 +61,7 @@
                                     <Font name="Arial" size="18.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="home" layoutX="21.0" layoutY="243.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" styleClass="nav-btn" stylesheets="@../res/dashboard.css" text="Home">
+                              <Button fx:id="home_button" layoutX="21.0" layoutY="243.0" mnemonicParsing="false" onAction="#changeForm" prefHeight="25.0" prefWidth="158.0" styleClass="nav-btn" stylesheets="@../res/dashboard.css" text="Home">
                                  <graphic>
                                     <FontAwesomeIcon fill="WHITE" glyphName="HOME" size="1.5em" />
                                  </graphic>
@@ -65,7 +69,7 @@
                                     <Font name="Arial" size="12.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="doctors" layoutX="21.0" layoutY="278.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" styleClass="nav-btn" stylesheets="@../res/dashboard.css" text="Doctors">
+                              <Button fx:id="doctor_button" layoutX="21.0" layoutY="278.0" mnemonicParsing="false" onAction="#changeForm" prefHeight="25.0" prefWidth="158.0" styleClass="nav-btn" stylesheets="@../res/dashboard.css" text="Doctors">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>
@@ -73,15 +77,7 @@
                                     <FontAwesomeIcon fill="WHITE" glyphName="USERS" size="1.5em" />
                                  </graphic>
                               </Button>
-                              <Button fx:id="room" layoutX="18.0" layoutY="314.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" styleClass="nav-btn" stylesheets="@../res/dashboard.css" text="Rooms">
-                                 <font>
-                                    <Font name="Arial" size="12.0" />
-                                 </font>
-                                 <graphic>
-                                    <FontAwesomeIcon fill="WHITE" glyphName="CHECK" size="1.5em" />
-                                 </graphic>
-                              </Button>
-                              <Button fx:id="patients" layoutX="18.0" layoutY="349.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" styleClass="nav-btn" stylesheets="@../res/dashboard.css" text="Patient Records">
+                              <Button fx:id="patients_button" layoutX="23.0" layoutY="311.0" mnemonicParsing="false" onAction="#changeForm" prefHeight="25.0" prefWidth="158.0" styleClass="nav-btn" stylesheets="@../res/dashboard.css" text="Patient Records">
                                  <font>
                                     <Font name="Arial" size="12.0" />
                                  </font>
@@ -89,7 +85,7 @@
                                     <FontAwesomeIcon fill="WHITE" glyphName="CLIPBOARD" size="1.5em" />
                                  </graphic>
                               </Button>
-                              <Button layoutX="23.0" layoutY="503.0" mnemonicParsing="false" stylesheets="@../res/dashboard.css">
+                              <Button fx:id="logout" layoutX="23.0" layoutY="503.0" mnemonicParsing="false" onAction="#logout" stylesheets="@../res/dashboard.css">
                                  <graphic>
                                     <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="2em" />
                                  </graphic>
@@ -103,6 +99,14 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
+                              <Button fx:id="bill_button" layoutX="17.0" layoutY="344.0" mnemonicParsing="false" onAction="#changeForm" prefHeight="25.0" prefWidth="158.0" styleClass="nav-btn" stylesheets="@../res/dashboard.css" text="Bills">
+                                 <graphic>
+                                    <FontAwesomeIcon fill="WHITE" glyphName="MONEY" size="1.5em" />
+                                 </graphic>
+                                 <font>
+                                    <Font name="Arial" size="12.0" />
+                                 </font>
+                              </Button>
                            </children>
                         </AnchorPane>
                      </children>
@@ -111,7 +115,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutX="105.0" layoutY="96.0" prefHeight="559.0" prefWidth="900.0" styleClass="shadow" stylesheets="@../res/dashboard.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="home_form" layoutX="105.0" layoutY="96.0" prefHeight="559.0" prefWidth="900.0" styleClass="shadow" stylesheets="@../res/dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="14.0" layoutY="11.0" prefHeight="537.0" prefWidth="874.0" styleClass="white-bg" stylesheets="@../res/dashboard.css">
                                  <children>
@@ -131,7 +135,7 @@
                                                             <Font size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="CENTER_RIGHT" layoutX="98.0" layoutY="14.0" prefHeight="30.0" prefWidth="118.0" text="0" textFill="WHITE">
+                                                      <Label fx:id="total_patients" alignment="CENTER_RIGHT" layoutX="98.0" layoutY="14.0" prefHeight="30.0" prefWidth="118.0" text="0" textFill="WHITE">
                                                          <font>
                                                             <Font size="20.0" />
                                                          </font>
@@ -146,7 +150,7 @@
                                                             <Font size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="CENTER_RIGHT" layoutX="98.0" layoutY="14.0" prefHeight="30.0" prefWidth="118.0" text="0" textFill="WHITE">
+                                                      <Label fx:id="total_revenue" alignment="CENTER_RIGHT" layoutX="98.0" layoutY="14.0" prefHeight="30.0" prefWidth="118.0" text="0" textFill="WHITE">
                                                          <font>
                                                             <Font size="20.0" />
                                                          </font>
@@ -162,7 +166,7 @@
                                                             <Font size="16.0" />
                                                          </font>
                                                       </Label>
-                                                      <Label alignment="CENTER_RIGHT" layoutX="100.0" layoutY="14.0" prefHeight="30.0" prefWidth="118.0" text="0" textFill="WHITE">
+                                                      <Label fx:id="gender_difference" alignment="CENTER_RIGHT" layoutX="100.0" layoutY="14.0" prefHeight="30.0" prefWidth="118.0" text="0" textFill="WHITE">
                                                          <font>
                                                             <Font size="20.0" />
                                                          </font>
@@ -177,7 +181,7 @@
                                                 <String fx:value="shadow" />
                                              </styleClass>
                                              <children>
-                                                <StackedBarChart layoutX="-119.0" layoutY="-39.0" prefHeight="361.0" prefWidth="381.0" title="Patients' Gender " AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <StackedBarChart fx:id="gender" layoutX="-119.0" layoutY="-39.0" prefHeight="361.0" prefWidth="381.0" title="Patients' Gender " AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                   <xAxis>
                                                     <CategoryAxis side="BOTTOM" />
                                                   </xAxis>
@@ -193,7 +197,7 @@
                                                 <String fx:value="shadow" />
                                              </styleClass>
                                              <children>
-                                                <BarChart layoutX="-80.0" layoutY="-63.0" prefHeight="361.0" prefWidth="434.0" title="Revenue " AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <BarChart fx:id="revenue" layoutX="-80.0" layoutY="-63.0" prefHeight="361.0" prefWidth="434.0" title="Revenue " AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                   <xAxis>
                                                     <CategoryAxis side="BOTTOM" />
                                                   </xAxis>
@@ -209,7 +213,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="559.0" prefWidth="900.0" styleClass="shadow" stylesheets="@../res/dashboard.css">
+                        <AnchorPane fx:id="patient_form" layoutX="10.0" layoutY="10.0" prefHeight="559.0" prefWidth="900.0" styleClass="shadow" stylesheets="@../res/dashboard.css" visible="false">
                            <children>
                               <AnchorPane layoutX="3.0" layoutY="-2.0" prefHeight="544.0" prefWidth="885.0" styleClass="white-bg" stylesheets="@../res/dashboard.css">
                                  <children>
@@ -219,20 +223,20 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                        <children>
-                                          <TextField layoutX="24.0" layoutY="14.0" prefHeight="25.0" prefWidth="200.0" promptText="Search" styleClass="search" stylesheets="@../res/dashboard.css" />
+                                          <TextField fx:id="patient_search" layoutX="24.0" layoutY="14.0" prefHeight="25.0" prefWidth="200.0" promptText="Search" styleClass="search" stylesheets="@../res/dashboard.css" />
                                           <FontAwesomeIcon glyphName="SEARCH" layoutX="32.0" layoutY="31.0" size="1.5em" />
-                                          <TableView layoutX="9.0" layoutY="55.0" prefHeight="225.0" prefWidth="866.0" styleClass="column-header-background" stylesheets="@../res/dashboard.css">
+                                          <TableView fx:id="patient_table" layoutX="9.0" layoutY="55.0" prefHeight="225.0" prefWidth="866.0" styleClass="column-header-background" stylesheets="@../res/dashboard.css">
                                             <columns>
-                                              <TableColumn prefWidth="58.0" text="Patient #" />
-                                              <TableColumn prefWidth="66.0" text="Name" />
-                                                <TableColumn prefWidth="71.0" text="Gender" />
-                                                <TableColumn prefWidth="58.0" text="Age" />
-                                                <TableColumn prefWidth="96.0" text="Phone Number" />
-                                                <TableColumn prefWidth="94.0" text="Address" />
-                                                <TableColumn prefWidth="117.0" text="Insurance Number" />
-                                                <TableColumn prefWidth="120.0" text="Date of Admission" />
-                                                <TableColumn prefWidth="112.0" text="Date of Discharge" />
-                                                <TableColumn prefWidth="72.0" text="Bill" />
+                                              <TableColumn fx:id="patient_id_col" prefWidth="58.0" text="Patient #" />
+                                              <TableColumn fx:id="patient_name_col" prefWidth="66.0" text="Name" />
+                                                <TableColumn fx:id="patient_gender_col" prefWidth="71.0" text="Gender" />
+                                                <TableColumn fx:id="patient_age_col" prefWidth="58.0" text="Age" />
+                                                <TableColumn fx:id="patient_phonenumber_col" prefWidth="96.0" text="Phone Number" />
+                                                <TableColumn fx:id="patient_address_col" prefWidth="94.0" text="Address" />
+                                                <TableColumn fx:id="patient_insurancenumber_col" prefWidth="117.0" text="Insurance Number" />
+                                                <TableColumn fx:id="patient_dateofadmission_col" prefWidth="120.0" text="Date of Admission" />
+                                                <TableColumn fx:id="patient_dateofdischarge_col" prefWidth="112.0" text="Date of Discharge" />
+                                                <TableColumn fx:id="patient_bill_col" prefWidth="72.0" text="Bill" />
                                             </columns>
                                           </TableView>
                                        </children>
@@ -242,13 +246,13 @@
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="103.0" layoutY="311.0" prefHeight="25.0" prefWidth="113.0" />
+                                    <TextField fx:id="patient_id" layoutX="103.0" layoutY="311.0" prefHeight="25.0" prefWidth="113.0" />
                                     <Label layoutX="45.0" layoutY="352.0" text="Name">
                                        <font>
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="103.0" layoutY="349.0" prefHeight="25.0" prefWidth="113.0" />
+                                    <TextField fx:id="patient_name" layoutX="103.0" layoutY="349.0" prefHeight="25.0" prefWidth="113.0" />
                                     <Label layoutX="45.0" layoutY="391.0" text="Gender">
                                        <font>
                                           <Font name="Tahoma" size="14.0" />
@@ -259,48 +263,132 @@
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="103.0" layoutY="428.0" prefHeight="25.0" prefWidth="113.0" />
-                                    <ComboBox layoutX="103.0" layoutY="388.0" prefHeight="25.0" prefWidth="113.0" promptText="Male" />
+                                    <TextField fx:id="patient_age" layoutX="103.0" layoutY="428.0" prefHeight="25.0" prefWidth="113.0" />
+                                    <ComboBox fx:id="patient_gender" layoutX="103.0" layoutY="388.0" prefHeight="25.0" prefWidth="113.0" promptText="Male" />
                                     <Label layoutX="7.0" layoutY="473.0" text="Phone Number">
                                        <font>
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="103.0" layoutY="469.0" prefHeight="25.0" prefWidth="113.0" />
+                                    <TextField fx:id="patient_phonenumber" layoutX="103.0" layoutY="469.0" prefHeight="25.0" prefWidth="113.0" />
                                     <Label layoutX="362.0" layoutY="321.0" text="Address">
                                        <font>
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="425.0" layoutY="317.0" prefHeight="25.0" prefWidth="125.0" />
+                                    <TextField fx:id="patient_address" layoutX="425.0" layoutY="317.0" prefHeight="25.0" prefWidth="125.0" />
                                     <Label layoutX="305.0" layoutY="358.0" text="Insurance Number">
                                        <font>
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="425.0" layoutY="355.0" prefHeight="25.0" prefWidth="124.0" />
+                                    <TextField fx:id="patient_insurancenumber" layoutX="425.0" layoutY="355.0" prefHeight="25.0" prefWidth="124.0" />
                                     <Label layoutX="305.0" layoutY="398.0" text="Date of Admission">
                                        <font>
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
-                                    <DatePicker layoutX="425.0" layoutY="395.0" prefHeight="25.0" prefWidth="125.0" />
+                                    <DatePicker fx:id="patient_dateofadmission" layoutX="425.0" layoutY="395.0" prefHeight="25.0" prefWidth="125.0" />
                                     <Label layoutX="308.0" layoutY="437.0" text="Date of Discharge">
                                        <font>
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
-                                    <DatePicker layoutX="425.0" layoutY="434.0" prefHeight="25.0" prefWidth="124.0" />
+                                    <DatePicker fx:id="patient_dateofdischarge" layoutX="425.0" layoutY="434.0" prefHeight="25.0" prefWidth="124.0" />
                                     <Label layoutX="393.0" layoutY="474.0" text="Bill">
                                        <font>
                                           <Font name="Tahoma" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="425.0" layoutY="470.0" prefHeight="25.0" prefWidth="125.0" />
-                                    <Button layoutX="652.0" layoutY="337.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="59.0" styleClass="add-btn" stylesheets="@../res/dashboard.css" text="Add" />
-                                    <Button layoutX="756.0" layoutY="339.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="59.0" styleClass="update-btn" stylesheets="@../res/dashboard.css" text="Update" />
-                                    <Button layoutX="756.0" layoutY="416.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="59.0" styleClass="clear-btn" stylesheets="@../res/dashboard.css" text="Clear" />
-                                    <Button layoutX="652.0" layoutY="416.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="59.0" styleClass="delete-btn" stylesheets="@../res/dashboard.css" text="Delete" />
+                                    <TextField fx:id="patient_bill" layoutX="425.0" layoutY="470.0" prefHeight="25.0" prefWidth="125.0" />
+                                    <Button fx:id="patient_add_button" layoutX="652.0" layoutY="337.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="59.0" styleClass="add-btn" stylesheets="@../res/dashboard.css" text="Add" />
+                                    <Button fx:id="patient_update_button" layoutX="756.0" layoutY="339.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="59.0" styleClass="update-btn" stylesheets="@../res/dashboard.css" text="Update" />
+                                    <Button fx:id="patient_clear_button" layoutX="756.0" layoutY="416.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="59.0" styleClass="clear-btn" stylesheets="@../res/dashboard.css" text="Clear" />
+                                    <Button fx:id="patient_delete_button" layoutX="652.0" layoutY="416.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="59.0" styleClass="delete-btn" stylesheets="@../res/dashboard.css" text="Delete" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="bill_form" layoutY="5.0" prefHeight="569.0" prefWidth="910.0" visible="false">
+                           <children>
+                              <AnchorPane layoutX="14.0" layoutY="16.0" prefHeight="538.0" prefWidth="200.0" stylesheets="@../res/dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="white-bg" />
+                                 </styleClass>
+                                 <children>
+                                    <TextField fx:id="bill_medicine" layoutX="86.0" layoutY="42.0" prefHeight="25.0" prefWidth="100.0" />
+                                    <Label layoutX="14.0" layoutY="46.0" prefHeight="17.0" prefWidth="58.0" text="Medicine" />
+                                    <TextField fx:id="bill_operation" layoutX="86.0" layoutY="77.0" prefHeight="25.0" prefWidth="100.0" />
+                                    <Label layoutX="14.0" layoutY="81.0" prefHeight="17.0" prefWidth="58.0" text="Operation" />
+                                    <TextField fx:id="bill_insurance" layoutX="86.0" layoutY="115.0" prefHeight="25.0" prefWidth="100.0" />
+                                    <Label layoutX="14.0" layoutY="119.0" prefHeight="17.0" prefWidth="58.0" text="Insurance" />
+                                    <Button fx:id="bill_add_button" layoutX="17.0" layoutY="203.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="60.0" styleClass="add-btn" stylesheets="@../res/dashboard.css" text="Add" />
+                                    <Button fx:id="bill_update_button" layoutX="106.0" layoutY="203.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="60.0" styleClass="update-btn" stylesheets="@../res/dashboard.css" text="Update" />
+                                    <Button fx:id="bill_clear_button" layoutX="17.0" layoutY="283.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="60.0" styleClass="clear-btn" stylesheets="@../res/dashboard.css" text="Clear" />
+                                    <Button fx:id="bill_delete_button" layoutX="106.0" layoutY="283.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="60.0" styleClass="delete-btn" stylesheets="@../res/dashboard.css" text="Delete" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="233.0" layoutY="16.0" prefHeight="538.0" prefWidth="655.0" stylesheets="@../res/dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="white-bg" />
+                                 </styleClass>
+                                 <children>
+                                    <TableView fx:id="bill_table" layoutX="14.0" layoutY="60.0" prefHeight="461.0" prefWidth="627.0">
+                                       <columns>
+                                          <TableColumn fx:id="bill_no_col" prefWidth="70.0" text="Bill_No" />
+                                          <TableColumn fx:id="bill_medicine_col" prefWidth="155.0" text="Medicine Charges" />
+                                          <TableColumn fx:id="bill_operation_col" prefWidth="142.0" text="Operation Charges" />
+                                          <TableColumn fx:id="bill_insurance_col" minWidth="0.0" prefWidth="147.0" text="Insurance Number" />
+                                          <TableColumn fx:id="bill_numberofday_col" minWidth="0.0" prefWidth="111.0" text="Number of Days" />
+                                       </columns>
+                                    </TableView>
+                                    <TextField fx:id="bill_search" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="182.0" promptText="Search" styleClass="search" stylesheets="@../res/dashboard.css" />
+                                    <FontAwesomeIcon glyphName="SEARCH" layoutX="20.0" layoutY="31.0" size="1.5em" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="doctor_form" prefHeight="569.0" prefWidth="910.0" visible="false">
+                           <children>
+                              <AnchorPane layoutX="14.0" layoutY="16.0" prefHeight="538.0" prefWidth="200.0" stylesheets="@../res/dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="white-bg" />
+                                 </styleClass>
+                                 <children>
+                                    <TextField fx:id="doctor_name" layoutX="86.0" layoutY="42.0" prefHeight="25.0" prefWidth="100.0" />
+                                    <Label layoutX="14.0" layoutY="46.0" prefHeight="17.0" prefWidth="58.0" text="Name" />
+                                    <TextField fx:id="doctor_age" layoutX="86.0" layoutY="77.0" prefHeight="25.0" prefWidth="100.0" />
+                                    <Label layoutX="14.0" layoutY="81.0" prefHeight="17.0" prefWidth="58.0" text="Age" />
+                                    <TextField fx:id="doctor_username" layoutX="86.0" layoutY="115.0" prefHeight="25.0" prefWidth="100.0" />
+                                    <Label layoutX="14.0" layoutY="119.0" prefHeight="17.0" prefWidth="58.0" text="Username" />
+                                    <Button fx:id="doctor_add_button" layoutX="17.0" layoutY="203.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="60.0" styleClass="add-btn" stylesheets="@../res/dashboard.css" text="Add" />
+                                    <Button fx:id="doctor_update_button" layoutX="106.0" layoutY="203.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="60.0" styleClass="update-btn" stylesheets="@../res/dashboard.css" text="Update" />
+                                    <Button fx:id="doctor_clear_button" layoutX="17.0" layoutY="283.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="60.0" styleClass="clear-btn" stylesheets="@../res/dashboard.css" text="Clear" />
+                                    <Button fx:id="doctor_delete_button" layoutX="106.0" layoutY="283.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="60.0" styleClass="delete-btn" stylesheets="@../res/dashboard.css" text="Delete" />
+                                    <TextField fx:id="doctor_password" layoutX="86.0" layoutY="154.0" prefHeight="25.0" prefWidth="100.0" />
+                                    <Label layoutX="14.0" layoutY="158.0" prefHeight="17.0" prefWidth="58.0" text="Password" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="233.0" layoutY="16.0" prefHeight="538.0" prefWidth="655.0" stylesheets="@../res/dashboard.css">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="white-bg" />
+                                 </styleClass>
+                                 <children>
+                                    <TableView fx:id="doctor_table" layoutX="14.0" layoutY="60.0" prefHeight="461.0" prefWidth="627.0">
+                                       <columns>
+                                          <TableColumn fx:id="doctor_col_id" prefWidth="70.0" text="Doctor_id" />
+                                          <TableColumn fx:id="doctor_col_name" prefWidth="155.0" text="Name" />
+                                          <TableColumn fx:id="doctor_col_age" prefWidth="75.0" text="Age" />
+                                          <TableColumn fx:id="doctor_col_username" minWidth="0.0" prefWidth="173.0" text="UserName" />
+                                          <TableColumn fx:id="doctor_col_password" minWidth="0.0" prefWidth="152.0" text="Password" />
+                                       </columns>
+                                    </TableView>
+                                    <TextField fx:id="doctor_search" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="182.0" promptText="Search" styleClass="search" stylesheets="@../res/dashboard.css" />
+                                    <FontAwesomeIcon glyphName="SEARCH" layoutX="20.0" layoutY="31.0" size="1.5em" />
                                  </children>
                               </AnchorPane>
                            </children>
