@@ -19,6 +19,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class login {
 
@@ -104,6 +105,8 @@ public class login {
 
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
+
+                    stage.initStyle(StageStyle.TRANSPARENT);
 
                     root.setOnMousePressed((MouseEvent event) -> {
                         x = event.getSceneX();
